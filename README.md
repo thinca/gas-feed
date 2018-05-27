@@ -2,7 +2,6 @@ Feed Reader Library for Google Apps Script
 ==========================================
 
 [![NPM Version][npm-image]][npm-url]
-[![Node.js Version][node-version-image]][node-version-url]
 [![Linux Build][travis-image]][travis-url]
 [![Test Coverage][codecov-image]][codecov-url]
 
@@ -84,8 +83,6 @@ thinca <thinca+npm@gmail.com>
 
 [npm-image]: https://img.shields.io/npm/v/gas-feed.svg
 [npm-url]: https://npmjs.org/package/gas-feed
-[node-version-image]: https://img.shields.io/node/v/gas-feed.svg
-[node-version-url]: https://nodejs.org/en/download/
 [travis-image]: https://img.shields.io/travis/thinca/gas-feed/master.svg?label=linux
 [travis-url]: https://travis-ci.org/thinca/gas-feed
 [codecov-image]: https://codecov.io/gh/thinca/gas-feed/branch/master/graph/badge.svg
