@@ -1,0 +1,29 @@
+language: node_js
+
+node_js:
+  - node
+
+sudo: false
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+  - npm install -g codecov
+
+script:
+  - npm run lint
+  - npm test
+
+after_success:
+  - npm run coverage
+  - codecov
+
+deploy:
+  provider: npm
+  email: thinca+npm@gmail.com
+  api_key:
+    secure: SmdBEJSIDh6okgxJossbf8HULtBtGtyT2rrrelzufIyeMeXCQEv2OwqYaH5DprjiPKrwXCm1u2LGkJXYW19J+m+XY8lC23ql8ozZvlacz3eDeLrqPCBCdFbxNISrOO1XgDib70l78NgPq/vyVeN/c0XsJG25iFMi5tjAs1i1+y0pNHR46xyA2dfych936p2bypncjPECM0+4W7kfMRFNHJzwMZNlXYLhmG/XOaSXyYyu9sxQ/Pqps3zqOKeBUQEiJvZGByPl1svsR6FnXyIgTfl/2zexG5H6Gt2AW7OXGbHCvXLhIdEDwS1I55MpUFyTza8njrDGGageptzgZPcVW8fBxduKN0Ft80qjhiyRVQsnoS0eoTaVE76B+DtrqWWg+xQE6A5482jfivzMmuedfzzzpZbI9fjRf/QtAOw37Drm/oWVLMQtlhTxSb0nlDvnRy7bK8eKD/sK783Us94+Smvv0I5/bKfnZEB89OES8rjhZbo65/Jw9m5Njp1IlR3GfNF3g8q2wxvOYhPUGaN28sUfW1ChstcICIatflwkCWARU4LVmoH2bS+41dwBnXUONEQd37uxtuL97FHMgwP7erk3f2AQVmalGHTFj8cq7vgG/iiACmRFVhM4SraqIsYF4xn77s5iVeiaiQIi6sogr+Skuhmr4VUg2mmsnJFNd6c=
+  on:
+    tags: true

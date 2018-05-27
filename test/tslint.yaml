@@ -1,0 +1,3 @@
+extends: ../tslint.yaml
+rules:
+  no-unused-expression: false
