@@ -14,8 +14,7 @@
     "strictPropertyInitialization": true,
 
     "module": "CommonJS",
-    "declaration": true,
-    "sourceMap": true
+    "declaration": true
   },
   "include": [
     "src/**/*.ts"
