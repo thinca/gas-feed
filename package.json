@@ -59,9 +59,9 @@
   "scripts": {
     "clean": "rm -fr built",
     "compile": "tsc",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov",
     "lint": "tslint 'src/**/*.ts' 'test/**/*.ts'",
-    "test": "nyc mocha ./test/**/*.test.ts",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov"
+    "test": "nyc mocha ./test/**/*.test.ts"
   },
   "types": "./built/index.d.ts"
 }
