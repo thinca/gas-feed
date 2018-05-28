@@ -30,7 +30,7 @@ Setup
     $ npm install gas-feed
     ```
 
-2.  Write `config.webpack.js`
+2.  Write `webpack.config.js`
 
     ```javascript
     const GasPlugin = require("gas-webpack-plugin");
