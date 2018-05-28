@@ -20,6 +20,9 @@ after_success:
   - npm run coverage
   - codecov
 
+before_deploy:
+  - npm run compile
+
 deploy:
   provider: npm
   email: thinca+npm@gmail.com
