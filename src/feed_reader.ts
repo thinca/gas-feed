@@ -29,7 +29,7 @@ class FeedReader {
 
     // TODO: Currently, ATOM support only
     const fetchedFeeds = atomReader(document);
-    const existanceFeeds = this.store.loadFeeds(fetchedFeeds.length);
+    const existanceFeeds = this.store.loadFeeds(this.store.getFeedCount());
     const newlyEntries = extractNewlyEntries(existanceFeeds, fetchedFeeds).reverse();
 
     this.store.saveFeeds(newlyEntries);
