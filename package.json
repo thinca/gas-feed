@@ -1,7 +1,7 @@
 {
   "name": "gas-feed",
   "description": "Feed reader library for Google Apps Script",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "thinca <thinca+npm@gmail.com>",
   "bugs": {
     "url": "https://github.com/thinca/gas-feed/issues"
