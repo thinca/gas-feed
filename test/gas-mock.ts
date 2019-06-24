@@ -143,7 +143,7 @@ namespace XML {
       ];
     }
 
-    public getChild(name: string, _: any) {
+    public getChild(_name: string, _: any) {
       return new Element();
     }
 
@@ -151,7 +151,7 @@ namespace XML {
       return name;
     }
 
-    public getAttribute(attrName: string) {
+    public getAttribute(_attrName: string) {
       return new Attribute();
     }
   }

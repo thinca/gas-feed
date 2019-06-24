@@ -1,5 +1,4 @@
 import {expect} from "chai";
-import sinon = require("sinon");
 
 import SpreadsheetStore = require("../src/spreadsheet_store");
 import "./gas-mock";
