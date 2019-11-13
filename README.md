@@ -70,10 +70,11 @@ Setup
 
     Copy and paste the content of code simplify or use [`clasp`](https://developers.google.com/apps-script/guides/clasp).
 
+
 License
 -------
 
-Zlib License
+[zlib License](LICENSE.txt)
 
 Author
 ------
