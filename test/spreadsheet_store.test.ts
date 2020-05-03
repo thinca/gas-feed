@@ -11,8 +11,9 @@ describe("SpreadsheetStore", () => {
 
   beforeEach(() => {
     SpreadsheetApp.clear();
-    store = new SpreadsheetStore(SHEET_ID, SHEET_NAME);
-    sheet = SpreadsheetApp.spreadsheets[SHEET_ID].sheets[SHEET_NAME];
+    const spreadsheet = SpreadsheetApp.create(SHEET_ID);
+    sheet = spreadsheet.insertSheet(SHEET_NAME);
+    store = new SpreadsheetStore(spreadsheet.getId(), SHEET_NAME);
   });
 
   describe("constructor", () => {
@@ -26,6 +27,12 @@ describe("SpreadsheetStore", () => {
         expect(store.loadFeeds(feeds.length)).to.deep.eq([
           {id: "1", title: "title1", url: "", date: "", body: ""},
         ]);
+      });
+    });
+
+    context("when the sheet is not found", () => {
+      it("throws an error", () => {
+        expect(() => new SpreadsheetStore(SHEET_ID, "not_exist_sheet")).to.throw();
       });
     });
   });

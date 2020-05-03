@@ -4,8 +4,13 @@ namespace Spreadsheets {
   export class App {
     public static spreadsheets: {[id: string]: Spreadsheet} = {};
 
+    public static create(name: string) {
+      const id = name;
+      this.spreadsheets[id] = new Spreadsheet(id, name);
+      return this.spreadsheets[id];
+    }
+
     public static openById(id: string) {
-      this.spreadsheets[id] = this.spreadsheets[id] || new Spreadsheet();
       return this.spreadsheets[id];
     }
 
@@ -17,9 +22,25 @@ namespace Spreadsheets {
   class Spreadsheet {
     public sheets: {[name: string]: Sheet} = {};
 
+    constructor(
+      private id: string,
+      private name: string,
+    ) {
+    }
+
+    public getId(): string {
+      return this.id;
+    }
+
+    public getName(): string {
+      return this.name;
+    }
+
     public getSheetByName(name: string) {
-      this.sheets[name] = this.sheets[name] || new Sheet();
       return this.sheets[name];
+    }
+    public insertSheet(name: string) {
+      return this.sheets[name] = new Sheet();
     }
   }
 

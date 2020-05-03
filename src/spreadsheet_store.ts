@@ -103,7 +103,7 @@ class SpreadsheetStore implements FeedStore {
    *
    * @return Store is empty or not
    */
-  public isEmpty() {
+  public isEmpty(): boolean {
     return this.sheet.getLastRow() === 1;
   }
 
@@ -122,14 +122,18 @@ class SpreadsheetStore implements FeedStore {
     }
   }
 
-  private isInitialized() {
+  private isInitialized(): boolean {
     const feedMarkCell = this.sheet.getRange(1, 1);
     return feedMarkCell.getValue() === SpreadsheetStore.FEED_MARK;
   }
 
-  private getSheet() {
+  private getSheet(): GoogleAppsScript.Spreadsheet.Sheet {
     const spreadsheet = SpreadsheetApp.openById(this.spreadsheetId);
-    return spreadsheet.getSheetByName(this.sheetName);
+    const sheet = spreadsheet.getSheetByName(this.sheetName);
+    if (sheet == null) {
+      throw new Error(`Sheet not found: ${this.sheetName}`);
+    }
+    return sheet;
   }
 }
 
