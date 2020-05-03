@@ -1,21 +1,82 @@
 // Dummy implementations
 
 namespace Spreadsheets {
-  export class App {
-    public static spreadsheets: {[id: string]: Spreadsheet} = {};
-
-    public static create(name: string) {
-      const id = name;
-      this.spreadsheets[id] = new Spreadsheet(id, name);
-      return this.spreadsheets[id];
+  class Range {
+    constructor(
+      private cells: string[][],
+      private row: number,
+      private column: number,
+      private numRows: number,
+      private numColumns: number,
+    ) {}
+    public getValue(): string {
+      return this.getValueAt(this.row - 1, this.column - 1);
+    }
+    public getValues(): string[][] {
+      const values: string[][] = [];
+      for (let rowIndex = 0; rowIndex < this.numRows; rowIndex++) {
+        const r = this.row + rowIndex - 1;
+        const row: string[] = [];
+        values.push(row);
+        for (let colIndex = 0; colIndex < this.numColumns; colIndex++) {
+          const c = this.column + colIndex - 1;
+          row.push(this.getValueAt(r, c));
+        }
+      }
+      return values;
+    }
+    public setValue(value: string): void {
+      this.setValueAt(value, this.row - 1, this.column - 1);
+    }
+    public setValues(values: string[][]): void {
+      values.forEach((rowValue, rowIndex) => {
+        const r = this.row + rowIndex - 1;
+        rowValue.forEach((value, colIndex) => {
+          const c = this.column + colIndex - 1;
+          this.setValueAt(value, r, c);
+        });
+      });
     }
 
-    public static openById(id: string) {
-      return this.spreadsheets[id];
+    private getValueAt(row: number, col: number): string {
+      const rowLine = this.cells[row] || [];
+      return rowLine[col] || "";
     }
+    private setValueAt(value: string, row: number, col: number): void {
+      while (this.cells.length <= row) {
+        this.cells.push([""]);
+      }
+      while (this.cells[row].length <= col) {
+        this.cells[row].push("");
+      }
+      this.cells[row][col] = value;
+    }
+  }
 
-    public static clear() {
-      this.spreadsheets = {};
+  export class Sheet {
+    public cells: string[][];
+
+    constructor() {
+      this.cells = [];
+    }
+    public getRange(row: number, column: number, numRows = 1, numColumns = 1): Range {
+      return new Range(this.cells, row, column, numRows, numColumns);
+    }
+    public getLastRow(): number {
+      return this.cells.length;
+    }
+    public getSheetValues(startRow: number, startColumn: number, numRows: number, numColumns: number): string[][] {
+      return this.getRange(startRow, startColumn, numRows, numColumns).getValues();
+    }
+    public insertRowsAfter(afterPosition: number, howMany: number): void {
+      const newRows = [];
+      for (let i = 0; i < howMany; i++) {
+        newRows.push([""]);
+      }
+      this.cells.splice(afterPosition, 0, ...newRows);
+    }
+    public clear(): void {
+      this.cells.splice(0, this.cells.length - 1);
     }
   }
 
@@ -36,90 +97,29 @@ namespace Spreadsheets {
       return this.name;
     }
 
-    public getSheetByName(name: string) {
+    public getSheetByName(name: string): Sheet {
       return this.sheets[name];
     }
-    public insertSheet(name: string) {
+    public insertSheet(name: string): Sheet {
       return this.sheets[name] = new Sheet();
     }
   }
 
-  export class Sheet {
-    public cells: string[][];
+  export class App {
+    public static spreadsheets: {[id: string]: Spreadsheet} = {};
 
-    constructor() {
-      this.cells = [];
-    }
-    public getRange(row: number, column: number, numRows = 1, numColumns = 1) {
-      return new Range(this.cells, row, column, numRows, numColumns);
-    }
-    public getLastRow() {
-      return this.cells.length;
-    }
-    public getSheetValues(startRow: number, startColumn: number, numRows: number, numColumns: number) {
-      return this.getRange(startRow, startColumn, numRows, numColumns).getValues();
-    }
-    public insertRowsAfter(afterPosition: number, howMany: number) {
-      const newRows = [];
-      for (let i = 0; i < howMany; i++) {
-        newRows.push([""]);
-      }
-      this.cells.splice(afterPosition, 0, ...newRows);
-    }
-    public clear() {
-      this.cells.splice(0, this.cells.length - 1);
-    }
-  }
-
-  class Range {
-    constructor(
-      private cells: string[][],
-      private row: number,
-      private column: number,
-      private numRows: number,
-      private numColumns: number,
-    ) {}
-    public getValue() {
-      return this.getValueAt(this.row - 1, this.column - 1);
-    }
-    public getValues() {
-      const values: string[][] = [];
-      for (let rowIndex = 0; rowIndex < this.numRows; rowIndex++) {
-        const r = this.row + rowIndex - 1;
-        const row: string[] = [];
-        values.push(row);
-        for (let colIndex = 0; colIndex < this.numColumns; colIndex++) {
-          const c = this.column + colIndex - 1;
-          row.push(this.getValueAt(r, c));
-        }
-      }
-      return values;
-    }
-    public setValue(value: string) {
-      this.setValueAt(value, this.row - 1, this.column - 1);
-    }
-    public setValues(values: string[][]) {
-      values.forEach((rowValue, rowIndex) => {
-        const r = this.row + rowIndex - 1;
-        rowValue.forEach((value, colIndex) => {
-          const c = this.column + colIndex - 1;
-          this.setValueAt(value, r, c);
-        });
-      });
+    public static create(name: string): Spreadsheet {
+      const id = name;
+      this.spreadsheets[id] = new Spreadsheet(id, name);
+      return this.spreadsheets[id];
     }
 
-    private getValueAt(row: number, col: number) {
-      const rowLine = this.cells[row] || [];
-      return rowLine[col] || "";
+    public static openById(id: string): Spreadsheet {
+      return this.spreadsheets[id];
     }
-    private setValueAt(value: string, row: number, col: number) {
-      while (this.cells.length <= row) {
-        this.cells.push([""]);
-      }
-      while (this.cells[row].length <= col) {
-        this.cells[row].push("");
-      }
-      this.cells[row][col] = value;
+
+    public static clear(): void {
+      this.spreadsheets = {};
     }
   }
 }
@@ -141,19 +141,9 @@ declare var UrlFetchApp: any;
 UrlFetchApp = URLFetch.App;
 
 namespace XML {
-  export class Service {
-    public static parse(_text: string) {
-      return new Document();
-    }
-
-    public static getNamespace(_name: string) {
-      return;
-    }
-  }
-
-  class Document {
-    public getRootElement() {
-      return new Element();
+  class Attribute {
+    public getValue(): string {
+      return "";
     }
   }
 
@@ -177,9 +167,19 @@ namespace XML {
     }
   }
 
-  class Attribute {
-    public getValue() {
-      return "";
+  class Document {
+    public getRootElement() {
+      return new Element();
+    }
+  }
+
+  export class Service {
+    public static parse(_text: string): Document {
+      return new Document();
+    }
+
+    public static getNamespace(_name: string) {
+      return;
     }
   }
 }

@@ -42,7 +42,7 @@ export class SpreadsheetStore implements FeedStore {
    *
    * @param etag  ETag
    */
-  public saveETag(etag: string) {
+  public saveETag(etag: string): void {
     const range = this.sheet.getRange(1, SpreadsheetStore.ETAG_POSITION);
     range.setValue(etag);
   }
@@ -52,7 +52,7 @@ export class SpreadsheetStore implements FeedStore {
    *
    * @return feed count
    */
-  public getFeedCount() {
+  public getFeedCount(): number {
     return this.sheet.getLastRow() - 1;
   }
 
@@ -110,11 +110,11 @@ export class SpreadsheetStore implements FeedStore {
   /**
    * Clear all stored feeds.
    */
-  public clear() {
+  public clear(): void {
     this.initialize(true);
   }
 
-  private initialize(force: boolean) {
+  private initialize(force: boolean): void {
     if (force || !this.isInitialized()) {
       this.sheet.clear();
       const feedMarkCell = this.sheet.getRange(1, 1, 1, 2);

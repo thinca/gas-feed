@@ -10,25 +10,25 @@ export class DummyStore implements FeedStore {
     this.etag = "";
   }
 
-  public loadETag() {
+  public loadETag(): string {
     return this.etag;
   }
-  public saveETag(etag: string) {
+  public saveETag(etag: string): void {
     this.etag = etag;
   }
-  public loadFeeds(n: number) {
+  public loadFeeds(n: number): FeedEntry[] {
     return this.feeds.slice(0, n);
   }
-  public saveFeeds(feeds: FeedEntry[]) {
+  public saveFeeds(feeds: FeedEntry[]): void {
     this.feeds.push(...feeds);
   }
-  public isEmpty() {
+  public isEmpty(): boolean {
     return this.feeds.length === 0;
   }
-  public clear() {
+  public clear(): void {
     this.feeds = [];
   }
-  public getFeedCount() {
+  public getFeedCount(): number {
     return this.feeds.length;
   }
 }

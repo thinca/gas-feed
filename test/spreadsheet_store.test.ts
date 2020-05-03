@@ -55,8 +55,8 @@ describe("SpreadsheetStore", () => {
 
   describe("#saveETag()", () => {
     it("saves ETag to store", () => {
-        store.saveETag("etag value");
-        expect(sheet.getRange(1, SpreadsheetStore.ETAG_POSITION, 1, 1).getValue()).to.eq("etag value");
+      store.saveETag("etag value");
+      expect(sheet.getRange(1, SpreadsheetStore.ETAG_POSITION, 1, 1).getValue()).to.eq("etag value");
     });
   });
 
