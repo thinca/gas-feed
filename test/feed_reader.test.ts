@@ -1,8 +1,8 @@
 import {expect} from "chai";
-import sinon = require("sinon");
+import {spy} from "sinon";
 
-import FeedReader = require("../src/feed_reader");
-import DummyStore = require("./dummy_store");
+import {FeedReader} from "../src/feed_reader";
+import {DummyStore} from "./dummy_store";
 import "./gas-mock";
 
 describe("FeedReader", () => {
@@ -16,7 +16,7 @@ describe("FeedReader", () => {
 
   describe("#fetch()", () => {
     it("updates feed store", () => {
-      const fetchSpy = sinon.spy(UrlFetchApp, "fetch");
+      const fetchSpy = spy(UrlFetchApp, "fetch");
       reader.fetch();
       expect(fetchSpy.withArgs(url).calledOnce).to.be.true;
       expect(reader.getNewlyEntries()).to.have.lengthOf(1);

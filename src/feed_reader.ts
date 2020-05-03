@@ -1,10 +1,10 @@
-import FeedEntry = require("./feed_entry");
-import FeedStore = require("./feed_store");
+import {FeedEntry} from "./feed_entry";
+import {FeedStore} from "./feed_store";
 
 /**
  * A FeedReader.
  */
-class FeedReader {
+export class FeedReader {
   private newlyEntries: FeedEntry[];
 
   /**
@@ -86,5 +86,3 @@ function atomReader(
   }
   return entries;
 }
-
-export = FeedReader;

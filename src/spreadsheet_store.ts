@@ -1,12 +1,12 @@
-import FeedEntry = require("./feed_entry");
-import FeedStore = require("./feed_store");
+import {FeedEntry} from "./feed_entry";
+import {FeedStore} from "./feed_store";
 
 /**
  * Stores feed data to a sheet of Google Spreadsheet.
  * The first row is used for an marker and metadata.
  * The feeds are stored to second or later rows.
  */
-class SpreadsheetStore implements FeedStore {
+export class SpreadsheetStore implements FeedStore {
   public static readonly ETAG_POSITION = 3;
   private static readonly FEED_MARK = "Feed Store";
   private static readonly DATA_VERSION = "1.0";
@@ -136,5 +136,3 @@ class SpreadsheetStore implements FeedStore {
     return sheet;
   }
 }
-
-export = SpreadsheetStore;

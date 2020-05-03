@@ -1,7 +1,7 @@
 /**
  * Represents an entry of feed.
  */
-interface FeedEntry {
+export interface FeedEntry {
   /**
    * ID of this feed.
    */
@@ -29,5 +29,3 @@ interface FeedEntry {
    */
   body?: string;
 }
-
-export = FeedEntry;

@@ -1,7 +1,7 @@
-import FeedStore = require("../src/feed_store");
-import FeedEntry = require("../src/feed_entry");
+import {FeedStore} from "../src/feed_store";
+import {FeedEntry} from "../src/feed_entry";
 
-class DummyStore implements FeedStore {
+export class DummyStore implements FeedStore {
   private feeds: FeedEntry[];
   private etag: string;
 
@@ -32,5 +32,3 @@ class DummyStore implements FeedStore {
     return this.feeds.length;
   }
 }
-
-export = DummyStore;

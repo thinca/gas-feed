@@ -1,6 +1,6 @@
 import {expect} from "chai";
 
-import SpreadsheetStore = require("../src/spreadsheet_store");
+import {SpreadsheetStore} from "../src/spreadsheet_store";
 import "./gas-mock";
 
 describe("SpreadsheetStore", () => {

@@ -1,4 +1,4 @@
-import FeedEntry = require("./feed_entry");
+import {FeedEntry} from "./feed_entry";
 
 /**
  * Represents a feed store.
@@ -6,7 +6,7 @@ import FeedEntry = require("./feed_entry");
  * A feed store can save and load feeds.
  * Order of feeds must be kept.
  */
-interface FeedStore {
+export interface FeedStore {
   /**
    * Load the ETag info.
    * The implementation of this can be omit.
@@ -61,5 +61,3 @@ interface FeedStore {
    */
   clear(): void;
 }
-
-export = FeedStore;
