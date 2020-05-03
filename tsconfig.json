@@ -12,6 +12,8 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
+    "target": "es5",
+    "lib": ["es6"],
 
     "module": "CommonJS",
     "declaration": true
