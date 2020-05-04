@@ -25,7 +25,6 @@ jobs:
       if: tag IS present
       cache: {}
       before_install: skip
-      install: skip
       script: skip
       after_success: true  # Don't skip: To trigger the deploy
       before_deploy:
