@@ -11,7 +11,6 @@ function extractNewlyEntries(
 }
 
 function atomReader(
-  // eslint-disable-next-line @typescript-eslint/camelcase
   document: GoogleAppsScript.XML_Service.Document,
 ): FeedEntry[] {
   const atom = XmlService.getNamespace("http://www.w3.org/2005/Atom");
