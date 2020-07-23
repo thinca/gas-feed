@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Unreleased
+
+- Update dependencies.
+
+
 ## v1.0.7 (2020-05-05)
 
 - Use ES6 style for modules.
