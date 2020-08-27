@@ -42,8 +42,8 @@ export class FeedReader {
   /**
    * Creates a new FeedReader object.
    *
-   * @param url  An URL of feed.
-   * @param store  A [[FeedStore]] to store feeds.
+   * @param url - An URL of feed.
+   * @param store - A [[FeedStore]] to store feeds.
    */
   constructor(
     public readonly url: string,
@@ -75,7 +75,7 @@ export class FeedReader {
   /**
    * Get newly entries that fetched by [[fetch]] method.
    *
-   * @return Newly entries
+   * @returns Newly entries.
    */
   public getNewlyEntries(): FeedEntry[] {
     return this.newlyEntries;

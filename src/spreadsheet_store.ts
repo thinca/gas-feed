@@ -15,8 +15,8 @@ export class SpreadsheetStore implements FeedStore {
   /**
    * Create a new SpreadsheetStore.
    *
-   * @param spreadsheetId  An ID of spreadsheet
-   * @param sheetName  A name of sheet
+   * @param spreadsheetId - An ID of spreadsheet.
+   * @param sheetName - A name of sheet.
    */
   constructor(
     public readonly spreadsheetId: string,
@@ -30,7 +30,7 @@ export class SpreadsheetStore implements FeedStore {
    * Load stored ETag data.
    * Returns an empty string when there is no stored data.
    *
-   * @return ETag
+   * @returns ETag.
    */
   public loadETag(): string {
     const range = this.sheet.getRange(1, SpreadsheetStore.ETAG_POSITION);
@@ -40,7 +40,7 @@ export class SpreadsheetStore implements FeedStore {
   /**
    * Save the ETag data.
    *
-   * @param etag  ETag
+   * @param etag - ETag.
    */
   public saveETag(etag: string): void {
     const range = this.sheet.getRange(1, SpreadsheetStore.ETAG_POSITION);
@@ -50,17 +50,17 @@ export class SpreadsheetStore implements FeedStore {
   /**
    * Get the feed count of store.
    *
-   * @return feed count
+   * @returns feed count.
    */
   public getFeedCount(): number {
     return this.sheet.getLastRow() - 1;
   }
 
   /**
-   * Load the latest {n} feeds.
+   * Load the latest n feeds.
    *
-   * @param n  Count of feeds
-   * @return Loaded feeds
+   * @param n - Count of feeds.
+   * @returns Loaded feeds.
    */
   public loadFeeds(n: number): FeedEntry[] {
     const height = this.getFeedCount();
@@ -80,7 +80,7 @@ export class SpreadsheetStore implements FeedStore {
    * This does not care the feed's ID.
    * Always stored all feeds.
    *
-   * @param feeds  Feeds to save
+   * @param feeds - Feeds to save.
    */
   public saveFeeds(feeds: FeedEntry[]): void {
     if (feeds.length === 0) {
@@ -101,7 +101,7 @@ export class SpreadsheetStore implements FeedStore {
   /**
    * Return true if there is no feeds in this store.
    *
-   * @return Store is empty or not
+   * @returns Store is empty or not.
    */
   public isEmpty(): boolean {
     return this.sheet.getLastRow() === 1;

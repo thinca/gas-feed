@@ -12,7 +12,7 @@ export interface FeedStore {
    * The implementation of this can be omit.
    * If it is omitted, this always returns an empty string.
    *
-   * @return ETag
+   * @returns ETag.
    */
   loadETag(): string;
 
@@ -21,22 +21,22 @@ export interface FeedStore {
    * The implementation of this can be omit.
    * If it is omitted, this does nothing.
    *
-   * @param etag  ETag
+   * @param etag - ETag.
    */
   saveETag(etag: string): void;
 
   /**
    * Get the feed count of store.
    *
-   * @return feed count
+   * @returns feed count.
    */
   getFeedCount(): number;
 
   /**
-   * Load the latest {n} feeds.
+   * Load the latest n feeds.
    *
-   * @param n  Count of feeds
-   * @return Loaded feeds
+   * @param n - Count of feeds.
+   * @returns Loaded feeds.
    */
   loadFeeds(n: number): FeedEntry[];
 
@@ -45,14 +45,14 @@ export interface FeedStore {
    * This does not care the feed's ID.
    * Always stored all feeds.
    *
-   * @param feeds  Feeds to save
+   * @param feeds - Feeds to save.
    */
   saveFeeds(feeds: FeedEntry[]): void;
 
   /**
    * Return true if there is no feeds in this store.
    *
-   * @return Store is empty or not
+   * @returns Store is empty or not.
    */
   isEmpty(): boolean;
 
