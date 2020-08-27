@@ -58,8 +58,8 @@
     "url": "git+https://github.com/thinca/gas-feed.git"
   },
   "scripts": {
+    "build": "tsc",
     "clean": "rm -fr built",
-    "compile": "tsc",
     "lint": "eslint 'src/**/*.ts' 'test/**/*.test.ts'",
     "test": "nyc --reporter=lcovonly --reporter=text mocha",
     "version": "sed -i -e \"s/^## Unreleased$/## v$(jq -r .version package.json) ($(date '+%Y-%m-%d'))/\" CHANGELOG.md && git add CHANGELOG.md"
