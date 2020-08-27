@@ -45,7 +45,10 @@ export class FeedReader {
    * @param url  An URL of feed.
    * @param store  A [[FeedStore]] to store feeds.
    */
-  constructor(public url: string, public store: FeedStore) {
+  constructor(
+    public readonly url: string,
+    public readonly store: FeedStore,
+  ) {
     this.newlyEntries = [];
   }
 

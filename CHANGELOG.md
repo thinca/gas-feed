@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Break: `FeedReader.store` and `FeedReader.url` is now readonly.
 - Update dependencies.
 
 
