@@ -62,7 +62,7 @@
     "compile": "tsc",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov",
     "lint": "eslint 'src/**/*.ts' 'test/**/*.test.ts'",
-    "test": "nyc mocha ./test/**/*.test.ts"
+    "test": "nyc mocha"
   },
   "types": "./built/index.d.ts"
 }
