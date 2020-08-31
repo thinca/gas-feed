@@ -53,10 +53,13 @@ export class FeedReader {
   }
 
   /**
-   * Fetch a remote feed and extract new feeds.
-   * The result can get from [[getNewlyEntries]].
+   * Fetch a remote feed and extract new feed entries.
+   * The result can also get from [[getNewlyEntries]].
+   * Do not forget calling [[save]] to save entries.
+   *
+   * @returns Fetched entries.
    */
-  public fetch(): void {
+  public fetch(): FeedEntry[] {
     // XXX: I want to use "ETag" header but it does not work on GAS
     // https://issuetracker.google.com/issues/36759005
     const response = UrlFetchApp.fetch(this.url);
@@ -64,16 +67,23 @@ export class FeedReader {
 
     // TODO: Currently, ATOM support only
     const fetchedFeeds = atomReader(document);
-    const existanceFeeds = this.store.loadFeeds(this.store.getFeedCount());
+    const existanceFeeds = this.store.loadFeeds(this.store.getFeedCount()).concat(this.newlyEntries);
     const newlyEntries = extractNewlyEntries(existanceFeeds, fetchedFeeds).reverse();
 
-    this.store.saveFeeds(newlyEntries);
-
     this.newlyEntries.push(...newlyEntries);
+    return newlyEntries;
   }
 
   /**
-   * Get newly entries that fetched by [[fetch]] method.
+   * Save the entries that fetched but not saved yet.
+   */
+  public save(): void {
+    this.store.saveFeeds(this.newlyEntries);
+    this.resetNewlyEntries();
+  }
+
+  /**
+   * Get entries that fetched by [[fetch]] method but not saved yet.
    *
    * @returns Newly entries.
    */
@@ -82,8 +92,8 @@ export class FeedReader {
   }
 
   /**
-   * Delete all new entries that is stored in this reader.
-   * Note that feeds in store is not deleted.
+   * Discard all not saved entries.
+   * Note that feeds in store are not deleted.
    */
   public resetNewlyEntries(): void {
     this.newlyEntries = [];

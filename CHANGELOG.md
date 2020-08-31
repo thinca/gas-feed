@@ -3,6 +3,8 @@
 ## Unreleased
 
 - Break: `FeedReader.store` and `FeedReader.url` is now readonly.
+- Break: Change usage of `FeedReader.fetch()`.
+  - Add `FeedReader.save()`.
 - Update dependencies.
 
 

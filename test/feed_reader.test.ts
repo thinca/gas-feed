@@ -15,13 +15,27 @@ describe("FeedReader", () => {
   });
 
   describe("#fetch()", () => {
-    it("updates feed store", () => {
+    it("fetches feeds", () => {
       const fetchSpy = spy(UrlFetchApp, "fetch");
       reader.fetch();
       expect(fetchSpy.withArgs(url).calledOnce).to.be.true;
       expect(reader.getNewlyEntries()).to.have.lengthOf(1);
+      expect(reader.store.getFeedCount()).to.eq(0);
+
       reader.fetch();
       expect(reader.getNewlyEntries()).to.have.lengthOf(1);
+      expect(reader.store.getFeedCount()).to.eq(0);
+    });
+  });
+
+  describe("#save()", () => {
+    it("updates feed store", () => {
+      reader.fetch();
+      expect(reader.getNewlyEntries()).to.have.lengthOf(1);
+      expect(reader.store.getFeedCount()).to.eq(0);
+      reader.save();
+      expect(reader.getNewlyEntries()).to.have.lengthOf(0);
+      expect(reader.store.getFeedCount()).to.eq(1);
     });
   });
 
