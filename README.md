@@ -72,6 +72,28 @@ A library for Google Apps Engine to read ATOM feeds.
     Copy and paste the content of code simplify or use [`clasp`](https://developers.google.com/apps-script/guides/clasp).
 
 
+## Usage
+
+Here is a most simple usage.
+
+```javascript
+// Get parameters from PropertiesService.
+const props = PropertiesService.getScriptProperties();
+const FEED_URL = props.getProperty("FEED_URL");
+const SPREADSHEET_ID = props.getProperty("SPREADSHEET_ID");
+const SHEET_NAME = props.getProperty("SHEET_NAME");
+
+const store = new SpreadsheetStore(SPREADSHEET_ID, SHEET_NAME);
+const reader = new FeedReader(WATCH_TARGET, store);
+
+const newlyFeeds = f.fetch();
+
+// Do something for newlyFeeds...
+
+reader.save();
+```
+
+
 ## License
 
 [zlib License](LICENSE.txt)
