@@ -1,0 +1,30 @@
+name: 'Document'
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  publish:
+    name: 'Document'
+    runs-on: 'ubuntu-latest'
+
+    steps:
+      - uses: 'actions/checkout@v2'
+      - name: 'Setup Node.js 12 (LTS)'
+        uses: 'actions/setup-node@v2-beta'
+        with:
+          node-version: '12'
+      - uses: 'bahmutov/npm-install@v1'
+      - name: 'Generate the documents'
+        run: |
+          npm run --silent doc
+
+      - name: 'Push the documents'
+        run: |
+          git switch --orphan gh-pages
+          git add --all docs
+          git config user.name '${{ github.event.head_commit.author.name }}'
+          git config user.email '${{ github.event.head_commit.author.email }}'
+          git commit --message='Add documents'
+          git push --force origin gh-pages

@@ -5,6 +5,7 @@ Feed Reader Library for Google Apps Script
 [![Test][test-ci-badge]][test-ci-action]
 [![Lint][lint-ci-badge]][lint-ci-action]
 [![Test Coverage][codecov-image]][codecov-url]
+[![API document][doc-api-image]][doc-api-url]
 
 A library for Google Apps Engine to read ATOM feeds.
 
@@ -91,3 +92,5 @@ thinca <thinca+npm@gmail.com>
 [lint-ci-action]: https://github.com/thinca/gas-feed/actions?query=workflow%3ALint
 [codecov-image]: https://codecov.io/gh/thinca/gas-feed/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/thinca/gas-feed
+[doc-api-image]: https://img.shields.io/badge/doc-API-orange
+[doc-api-url]: https://thinca.github.io/gas-feed/
