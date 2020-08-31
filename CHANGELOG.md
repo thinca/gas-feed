@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## v2.0.0 (2020-09-01)
 
 - Break: `FeedReader.store` and `FeedReader.url` is now readonly.
 - Break: Change usage of `FeedReader.fetch()`.
