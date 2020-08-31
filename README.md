@@ -1,5 +1,4 @@
-Feed Reader Library for Google Apps Script
-==========================================
+# Feed Reader Library for Google Apps Script
 
 [![NPM Version][npm-image]][npm-url]
 [![Test][test-ci-badge]][test-ci-action]
@@ -9,21 +8,21 @@ Feed Reader Library for Google Apps Script
 
 A library for Google Apps Engine to read ATOM feeds.
 
-Features
---------
+
+## Features
 
 - Read ATOM feeds via [UrlFetchApp](https://developers.google.com/apps-script/reference/url-fetch/url-fetch-app).
   - Currently, ATOM support only.
 - Store entries to Spreadsheet.
   - A store is pluggable.  Currently, `SpreadsheetStore` is only implemented.
 
-Requirements
-------------
+
+## Requirements
 
 - [gas-webpack-plugin](https://github.com/fossamagna/gas-webpack-plugin)
 
-Setup
------
+
+## Setup
 
 1.  Install dependencies
 
@@ -73,13 +72,12 @@ Setup
     Copy and paste the content of code simplify or use [`clasp`](https://developers.google.com/apps-script/guides/clasp).
 
 
-License
--------
+## License
 
 [zlib License](LICENSE.txt)
 
-Author
-------
+
+## Author
 
 thinca <thinca+npm@gmail.com>
 
